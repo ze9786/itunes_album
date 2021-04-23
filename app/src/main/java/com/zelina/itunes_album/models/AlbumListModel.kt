@@ -5,6 +5,7 @@ import android.view.View
 data class AlbumListModel(
     var artistName: String,
     var collectionName: String,
-    var collectionCensoredName: String,
+    var collectionPrice: Double,
+    val currency: String,
     var isBookmarked: Boolean,
 )

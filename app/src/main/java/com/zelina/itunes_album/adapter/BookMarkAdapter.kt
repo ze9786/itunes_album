@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.google.android.material.snackbar.Snackbar
 import com.zelina.itunes_album.R
-import com.zelina.itunes_album.databinding.ListAlbumBinding
+import com.zelina.itunes_album.databinding.ListBookmarkBinding
 import com.zelina.itunes_album.models.AlbumListModel
 
-//to show the albums, in list
-class AlbumAdapter(private val items: List<AlbumListModel>) :BaseAdapter(){
-    lateinit var mBinding: ListAlbumBinding
+
+class BookMarkAdapter(private val items: List<AlbumListModel>) :BaseAdapter(){
+    lateinit var mBinding: ListBookmarkBinding
 
     override fun getCount(): Int {
         return items.size
@@ -23,7 +23,7 @@ class AlbumAdapter(private val items: List<AlbumListModel>) :BaseAdapter(){
     }
 
     override fun getItemId(position: Int): Long {
-       return position.toLong()
+        return position.toLong()
     }
 
     @SuppressLint("SetTextI18n")
@@ -32,30 +32,17 @@ class AlbumAdapter(private val items: List<AlbumListModel>) :BaseAdapter(){
         val layoutInflater=LayoutInflater.from(parent.context)
         var albumListModel = getItem(position) as AlbumListModel
         if(view==null){
-            mBinding= ListAlbumBinding.inflate(layoutInflater)
+            mBinding= ListBookmarkBinding.inflate(layoutInflater)
             view=mBinding.root
             view.tag=mBinding
         }else
-            mBinding=view.tag as ListAlbumBinding
+            mBinding=view.tag as ListBookmarkBinding
 
         mBinding.albumListModel=albumListModel
         mBinding.artistName.text="Artist Name: "+items[position].artistName
         mBinding.collectionName.text="Collection Name: "+items[position].collectionName
         mBinding.collectionCensoredName.text="Price: "+items[position].currency+items[position].collectionPrice.toString()
 
-        if (items[position].isBookmarked) {
-            mBinding.bookmarkImg.setImageResource(R.drawable.ic_baseline_favorite_24)
-        } else {
-            mBinding.bookmarkImg.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-        }
-
-        mBinding.bookmarkImg.setOnClickListener {
-            items[position].isBookmarked=!items[position].isBookmarked
-            val snackbar =
-                Snackbar.make(view, "Bookmarked", Snackbar.LENGTH_SHORT)
-            snackbar.show()
-            notifyDataSetChanged()
-        }
 
         return view
     }
