@@ -6,4 +6,5 @@ data class AlbumListModel(
     var artistName: String,
     var collectionName: String,
     var collectionCensoredName: String,
+    var isBookmarked: Boolean,
 )
