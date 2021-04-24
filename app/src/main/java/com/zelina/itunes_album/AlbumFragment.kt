@@ -54,11 +54,11 @@ class AlbumFragment : Fragment() {
 
         mBinding.bookmarkIcon.setOnClickListener {
             //bookmark is clicked
-            val fragment2 = BookMarkFragment(list)
+            val fragment2 = BookMarkFragment(list,childFragmentManager)
             val fragmentManager = childFragmentManager
             val id=this.id
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.add(id, fragment2, "bookmarkList").commit()
+            fragmentTransaction.add(id, fragment2, "bookmarkList").addToBackStack("backStack").commit()
 
         }
         return mBinding.root
