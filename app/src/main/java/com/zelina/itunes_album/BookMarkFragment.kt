@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentTransaction
 import com.zelina.itunes_album.adapter.BookMarkAdapter
 import com.zelina.itunes_album.databinding.FragmentBookMarkBinding
 import com.zelina.itunes_album.databinding.ListBookmarkBinding
@@ -41,6 +42,12 @@ class BookMarkFragment(var albumList:List<AlbumListModel>) : Fragment() {
         mAdapter= BookMarkAdapter(mList)
         mBinding.bookmarkList.apply{
             adapter=mAdapter
+        }
+
+        mBinding.toolbar.setNavigationOnClickListener {
+            val fragmentManager = childFragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.detach(this)
         }
         return mBinding.root
     }

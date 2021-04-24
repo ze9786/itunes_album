@@ -40,7 +40,7 @@ class AlbumFragment : Fragment() {
                         collectionName = respond.results[i].collectionName,
                         collectionPrice = respond.results[i].collectionPrice,
                         currency = respond.results[i].currency,
-                        false
+                        isBookmarked = false
                     )
                 )
             }
@@ -53,12 +53,12 @@ class AlbumFragment : Fragment() {
 
 
         mBinding.bookmarkIcon.setOnClickListener {
-            //TODO: stack when bookmark is clicked
+            //bookmark is clicked
             val fragment2 = BookMarkFragment(list)
             val fragmentManager = childFragmentManager
             val id=this.id
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(id, fragment2, "bookmarkList").commit()
+            fragmentTransaction.add(id, fragment2, "bookmarkList").commit()
 
         }
         return mBinding.root
