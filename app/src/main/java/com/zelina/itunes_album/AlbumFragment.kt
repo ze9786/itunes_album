@@ -28,11 +28,13 @@ class AlbumFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        //bind xml
         mBinding= FragmentAlbumBinding.inflate(layoutInflater)
-        var respond= AlbumConverter().convertToAlbum()
+        //call api to get the data
+        val respond= AlbumConverter().convertToAlbum()
         list.clear()
         if (respond != null) {
+            //use respond count to get all albums with a loop
             for(i in 0 until respond.resultCount!!){
                 list.add(
                     AlbumListModel(
@@ -58,6 +60,11 @@ class AlbumFragment : Fragment() {
             val fragmentManager = childFragmentManager
             val id=this.id
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            //set transitions when fragment is called
+            fragmentTransaction.setCustomAnimations(R.anim.slide_in_left,
+                     R.anim.fade_out,
+                    R.anim.fade_in,
+                    R.anim.slide_out_right)
             fragmentTransaction.add(id, fragment2, "bookmarkList").addToBackStack("backStack").commit()
 
         }

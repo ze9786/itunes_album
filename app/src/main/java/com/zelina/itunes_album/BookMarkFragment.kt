@@ -28,9 +28,9 @@ class BookMarkFragment(var albumList:List<AlbumListModel>, val fm:FragmentManage
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         mBinding= FragmentBookMarkBinding.inflate(layoutInflater)
         mList.clear()
+        //just add the albums that are bookmarked by the user
         for(album in albumList){
             if (album.isBookmarked)
                 mList.add(album)
@@ -40,6 +40,7 @@ class BookMarkFragment(var albumList:List<AlbumListModel>, val fm:FragmentManage
             adapter=mAdapter
         }
 
+        //when the user click back, pop the current fragment
         mBinding.toolbar.setNavigationOnClickListener {
             fm.popBackStackImmediate()
         }

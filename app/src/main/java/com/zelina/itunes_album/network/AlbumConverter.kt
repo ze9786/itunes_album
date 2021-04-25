@@ -8,7 +8,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
 
-
+//call api and convert json file to viewmodel
 class AlbumConverter {
     var client = OkHttpClient()
 

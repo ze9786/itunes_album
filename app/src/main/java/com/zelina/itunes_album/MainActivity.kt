@@ -10,13 +10,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
+            //open the album fragment to show all albums
             var albumFragment=AlbumFragment()
             supportFragmentManager
-                // 3
                 .beginTransaction()
-                // 4
                 .replace(R.id.fragment_container_view, albumFragment, "albumList")
-                // 5
                 .commit()
         }
     }
